@@ -1,0 +1,25 @@
+Version 0.45 22/02/2011
+Fixes to the OWL parser breaking up on &gt; signs
+
+Version 0.44 21/02/2011
+Fixed incorrect date output
+Log and skip empty labels
+OBO::Writer 0.04 - replaces underscores with colons in ids and xrefs
+Fixes to similarity_match.pl script (single column flat files)
+Changed the distance function from Levenshtein to n-grams
+
+Version 0.43 29/11/2010
+Alignment of the OBO writer to the output accepted by OLS
+A better method to normalise string values in similarity_match.pl
+Preserving of the columns in flat file format
+
+Version 0.42 20/10/2010
+Some fixes for the Protege 4.1 OWL format
+
+Version 0.41 3/8/2010
+Parser returns a hashref collection for easier lookup by id
+Added a simple converter to OBO format
+Fixed tests and improved docs
+
+Version 0.40 1/8/2010
+First public release
