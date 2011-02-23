@@ -1,3 +1,6 @@
+Version 0.46 22/02/2011
+Changes to parse and convert owl:versionInfo
+
 Version 0.45 22/02/2011
 Fixes to the OWL parser breaking up on &gt; signs
 

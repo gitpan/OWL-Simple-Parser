@@ -56,6 +56,10 @@ Number of classes loaded by the parser.
 
 Number of synonyms loaded by the parser.
 
+=item version()
+
+Version of the ontology extracted from the owl:versionInfo.
+
 =item class
 
 Hash collection of all the OWL::Simple::Class objects
@@ -86,12 +90,13 @@ use Data::Dumper;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init( { level => $INFO, layout => '%-5p - %m%n' } );
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 has 'owlfile'     => ( is => 'rw', isa => 'Str',     required => 1 );
 has 'class'       => ( is => 'ro', isa => 'HashRef', default  => sub { {} } );
 has 'class_count' => ( is => 'rw', isa => 'Int',     default  => 0 );
 has 'synonyms_count' => ( is => 'rw', isa => 'Int', default => 0 );
+has 'version' => ( is => 'rw', isa => 'Str' , default => '');
 has 'synonym_tag' =>
   ( is => 'rw', isa => 'Str', default => 'efo:alternative_term' );
 
@@ -219,8 +224,7 @@ sub characterData {
 			( defined $class->annotation() ? $class->annotation() : '' )
 			. $data );
 	}
-
-
+	
 	# Get synonyms, either matching to anything with synonym or
 	# alternative_term inside or custom tag from parameters
 	elsif (
@@ -240,6 +244,11 @@ sub characterData {
 		#	($data) = $data =~ m!>(.*?)</!;    # match to first entry
 		#}
 
+	}
+	
+	# Extract version information
+	elsif ( $path eq '/rdf:RDF/owl:Ontology/owl:versionInfo' ){
+		$self->version($self->version() . $data);
 	}
 }
 
